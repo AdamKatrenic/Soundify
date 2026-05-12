@@ -1,5 +1,6 @@
 package sk.adamkatrenic.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Artist {
     @Column
     private String genre;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "artist", cascade = CascadeType.ALL)
     private List<Album> albums;
 

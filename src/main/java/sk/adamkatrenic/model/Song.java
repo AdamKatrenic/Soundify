@@ -1,5 +1,7 @@
 package sk.adamkatrenic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Song {
     @Column
     private int duration;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "album_id")
     private Album album;

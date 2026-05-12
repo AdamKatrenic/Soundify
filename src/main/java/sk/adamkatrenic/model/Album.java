@@ -1,5 +1,7 @@
 package sk.adamkatrenic.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -17,10 +19,12 @@ public class Album {
     @Column
     private int releaseYear;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
     private List<Song> songs;
 
