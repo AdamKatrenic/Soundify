@@ -1,4 +1,4 @@
-package sk.adamkatrenic.soundify;
+package sk.adamkatrenic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
