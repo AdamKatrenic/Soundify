@@ -1,6 +1,7 @@
 package sk.adamkatrenic.service;
 
 import org.springframework.stereotype.Service;
+import sk.adamkatrenic.exception.ResourceNotFoundException;
 import sk.adamkatrenic.model.Artist;
 import sk.adamkatrenic.repository.ArtistRepository;
 
@@ -20,8 +21,9 @@ public class ArtistService {
         return repository.findAll();      // ← return!
     }
 
-    public Optional<Artist> findById(Long id) {
-        return repository.findById(id);   // ← Optional lebo môže neexistovať
+    public Artist findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Artist not found with id: " + id));
     }
 
     public Artist save(Artist artist) {

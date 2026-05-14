@@ -1,6 +1,7 @@
 package sk.adamkatrenic.service;
 
 import org.springframework.stereotype.Service;
+import sk.adamkatrenic.exception.ResourceNotFoundException;
 import sk.adamkatrenic.model.Playlist;
 import sk.adamkatrenic.model.Song;
 import sk.adamkatrenic.repository.PlaylistRepository;
@@ -22,8 +23,8 @@ public class PlaylistService {
         return repository.findAll();
     }
 
-    public Optional<Playlist> findById(Long id) {
-        return repository.findById(id);
+    public Playlist findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Playlist not found with id: " + id));
     }
 
     public Playlist save(Playlist playlist) {

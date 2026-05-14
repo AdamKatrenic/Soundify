@@ -1,6 +1,7 @@
 package sk.adamkatrenic.service;
 
 import org.springframework.stereotype.Service;
+import sk.adamkatrenic.exception.ResourceNotFoundException;
 import sk.adamkatrenic.model.Album;
 import sk.adamkatrenic.repository.AlbumRepository;
 
@@ -21,8 +22,9 @@ public class AlbumService {
         return repository.findAll();
     }
 
-    public Optional<Album> findById(Long id) {
-        return repository.findById(id);
+    public Album findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Album not found with id: " + id));
     }
 
     public Album save(Album album) {

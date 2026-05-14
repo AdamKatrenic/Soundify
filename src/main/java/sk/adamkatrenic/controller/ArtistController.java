@@ -24,9 +24,7 @@ public class ArtistController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Artist> getById(@PathVariable Long id) {
-        return artistService.findById(id)
-                .map(ResponseEntity::ok)                    // 200 OK ak existuje
-                .orElse(ResponseEntity.notFound().build()); // 404 ak neexistuje
+        return ResponseEntity.ok(artistService.findById(id));
     }
 
     @PostMapping

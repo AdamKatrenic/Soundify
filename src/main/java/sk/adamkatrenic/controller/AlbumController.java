@@ -24,9 +24,7 @@ public class AlbumController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Album> getById(@PathVariable Long id) {
-        return albumService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(albumService.findById(id));
     }
 
     @PostMapping
