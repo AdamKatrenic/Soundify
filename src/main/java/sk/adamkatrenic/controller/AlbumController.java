@@ -1,5 +1,6 @@
 package sk.adamkatrenic.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.adamkatrenic.model.Album;
@@ -28,7 +29,7 @@ public class AlbumController {
     }
 
     @PostMapping
-    public ResponseEntity <Album> create(@RequestBody Album album) {
+    public ResponseEntity <Album> create(@Valid @RequestBody Album album) {
         return ResponseEntity.status(201).body(albumService.save(album));
     }
 

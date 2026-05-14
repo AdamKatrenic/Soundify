@@ -1,5 +1,6 @@
 package sk.adamkatrenic.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sk.adamkatrenic.model.Song;
@@ -28,7 +29,7 @@ public class SongController {
     }
 
     @PostMapping
-    public ResponseEntity <Song> create(@RequestBody Song song) {
+    public ResponseEntity <Song> create(@Valid @RequestBody Song song) {
         return ResponseEntity.status(201).body(songService.save(song));
     }
 

@@ -1,9 +1,9 @@
 package sk.adamkatrenic.controller;
 
 
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sk.adamkatrenic.model.Album;
 import sk.adamkatrenic.model.Playlist;
 import sk.adamkatrenic.model.Song;
 import sk.adamkatrenic.service.PlaylistService;
@@ -31,7 +31,7 @@ public class PlaylistController {
     }
 
     @PostMapping
-    public ResponseEntity<Playlist> create(@RequestBody Playlist playlist) {
+    public ResponseEntity<Playlist> create(@Valid @RequestBody Playlist playlist) {
         return ResponseEntity.status(201).body(playlistService.save(playlist));
     }
 

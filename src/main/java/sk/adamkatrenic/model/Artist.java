@@ -2,6 +2,9 @@ package sk.adamkatrenic.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -12,9 +15,12 @@ public class Artist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Meno umelca nemôže byť prázdne!")
+    @Size(min = 2, max = 100, message = "Meno musí mať 2-100 znakov!")
     @Column(nullable = false)
     private String name;
 
+    @NotBlank(message = "Žáner nemôže byť prázdny!")
     @Column
     private String genre;
 

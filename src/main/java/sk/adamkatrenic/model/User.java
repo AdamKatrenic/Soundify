@@ -1,6 +1,10 @@
 package sk.adamkatrenic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.List;
 
 @Entity
@@ -11,12 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Username nesmie byť prázdne!")
+    @Size(min = 3, max = 50, message = "Username musí mať 3-50 znakov!")
     @Column(nullable = false, unique = true)
     private String username;
 
+    @NotBlank(message = "Heslo nemôže byť prázdne!")
+    @Size(min = 6, message = "Heslo musí mať aspoň 6 znakov!")
     @Column(nullable = false)
     private String password;
 
+    @Email(message = "Neplatný email formát!")
+    @NotBlank(message = "Email nemôže byť prázdny!")
     @Column(nullable = false, unique = true)
     private String email;
 
